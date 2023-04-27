@@ -27,6 +27,8 @@ public class ProdukDTO {
         private Produsen produsen;
         @NotNull
         private Double harga;
+        @NotNull
+        private String spesifikasi;
     }
 
     @Data
@@ -47,5 +49,7 @@ public class ProdukDTO {
         private Produsen produsen;
         @NotNull
         private Double harga;
+        @NotNull
+        private String spesifikasi;
     }
 }
