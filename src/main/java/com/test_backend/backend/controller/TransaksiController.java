@@ -21,27 +21,38 @@ public class TransaksiController {
     @Autowired
     private TransaksiService service;
 
-    @GetMapping("/list")
-    public List<Transaksi> findAll(){
-        return service.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
-        Optional<Transaksi> response = service.findById(id);
+    @GetMapping("/list-cart/{id}")
+    public ResponseEntity<?> findOnCart(@PathVariable("id") Integer id){
+        List<Transaksi> response = service.findOnCart(id);
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/list-transaction/{id}")
+    public ResponseEntity<?> findTransaction(@PathVariable("id") Integer id){
+        List<Transaksi> response = service.findTransaction(id);
+        return ResponseEntity.ok(response);
+    }
+
+    // @GetMapping("/{id}")
+    // public ResponseEntity<?> findById(@PathVariable("id") Integer id){
+    //     Optional<Transaksi> response = service.findById(id);
+    //     return ResponseEntity.ok(response);
+    // }
+
+
+    // Menambah Transaksi Baru (Tambah ke Cart)
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody @Valid TransaksiDTO.New transaksi) {
         try {
             TransaksiDTO.New response = service.save(transaksi);
+            System.out.println(response);
             return ResponseEntity.ok(response);
         } catch (DataAccessException dae) {
             return new ResponseEntity<>(dae.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    // Mengubah Detail Transaksi
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody @Valid TransaksiDTO.Update transaksi) {
         try {
@@ -52,15 +63,20 @@ public class TransaksiController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
-        service.delete(id);
-        return ResponseEntity.ok().build();
+    // Checkout Transaksi
+    @PutMapping("/checkout")
+    public ResponseEntity<?> update(@RequestBody @Valid TransaksiDTO.Checkout transaksi) {
+        try {
+            TransaksiDTO.Checkout response = service.checkout(transaksi);
+            return ResponseEntity.ok(response);
+        } catch (DataAccessException dae) {
+            return new ResponseEntity<>(dae.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @GetMapping("/{id}/detail")
-    public ResponseEntity<?> detail(@PathVariable("id") Integer id) {
-        Optional<TransaksiDTO.Detail> response = service.detail(id);
-        return ResponseEntity.ok(response);
-    }
+    // @DeleteMapping("/delete/{id}")
+    // public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+    //     service.delete(id);
+    //     return ResponseEntity.ok().build();
+    // }
 }

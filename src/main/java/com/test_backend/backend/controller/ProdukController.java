@@ -26,12 +26,14 @@ public class ProdukController {
         return service.findAll();
     }
 
+    // Get Detail Produk
     @GetMapping("/findById/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Integer id){
         Optional<Produk> response = service.findById(id);
         return ResponseEntity.ok(response);
     }
 
+    // Get Produk berdasarkan produsen/toko
     @GetMapping("/findByProdusenId/{id}")
     public ResponseEntity<?> findByProdusenId(@PathVariable("id") Integer id){
         List<Produk> response = service.findByProdusenId(id);
