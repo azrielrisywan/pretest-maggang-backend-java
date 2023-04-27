@@ -25,6 +25,10 @@ public class ProdukService {
         return dao.findById(id);
     }
 
+    public List<Produk> findByProdusenId(Integer id){
+        return dao.findByProdusenId(id);
+    }
+
     public ProdukDTO.New save(ProdukDTO.New produk) {
         return dao.save(produk);
     }
