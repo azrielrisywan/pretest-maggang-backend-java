@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Transaksi {
     private Integer id;
-    private Double kuantitas;
+    private Integer id_user;
+    private Integer status;
+    private Integer kuantitas;
     private Produk produk;
 }

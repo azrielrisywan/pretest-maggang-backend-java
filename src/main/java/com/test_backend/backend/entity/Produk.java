@@ -14,4 +14,5 @@ public class Produk {
     private Integer berat;
     private Produsen produsen;
     private Double harga;
+    private String spesifikasi;
 }
