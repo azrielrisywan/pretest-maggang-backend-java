@@ -30,6 +30,7 @@ public class ProdukDAO {
                 "p.jenis as produkJenis,\n" +
                 "p.berat as produkBerat," +
                 "p.harga as produkHarga,\n" +
+                "p.spesifikasi as produkSpesifikasi,\n" +
                 "p2.id as produsenId,\n" +
                 "p2.nama as produsenNama,\n" +
                 "p2.kode as produsenkode,\n" +
@@ -45,6 +46,7 @@ public class ProdukDAO {
                 produk.setJenis(rs.getString("produkJenis"));
                 produk.setBerat(rs.getInt("produkBerat"));
                 produk.setHarga(rs.getDouble("produkHarga"));
+                produk.setSpesifikasi(rs.getString("produkSpesifikasi"));
 
                 Produsen produsen = new Produsen();
                 produsen.setId(rs.getInt("produsenId"));
@@ -105,6 +107,7 @@ public class ProdukDAO {
                 "p.jenis as produkJenis,\n" +
                 "p.berat as produkBerat," +
                 "p.harga as produkHarga,\n" +
+                "p.spesifikasi as produkSpesifikasi,\n" +
                 "p2.id as produsenId,\n" +
                 "p2.nama as produsenNama,\n" +
                 "p2.kode as produsenkode,\n" +
@@ -122,6 +125,7 @@ public class ProdukDAO {
                 produk.setJenis(rs.getString("produkJenis"));
                 produk.setBerat(rs.getInt("produkBerat"));
                 produk.setHarga(rs.getDouble("produkHarga"));
+                produk.setSpesifikasi(rs.getString("produkSpesifikasi"));
 
                 Produsen produsen = new Produsen();
                 produsen.setId(rs.getInt("produsenId"));
