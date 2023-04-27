@@ -1,0 +1,17 @@
+1. Apa yang anda ketahui tentang Rest API?
+2. Apa yang anda ketahui tentang Server side and Client side processing?
+3. Apa yang anda ketahui tentang Monolith dan Microservices, berikan contohnya?
+4. Apa yang anda ketahui tentang Design pattern inversion of Control serta Dependency Injection?
+5. Apa yang anda ketahui tentang Java programming dan Spring framework khususnya spring-boot?
+
+Jawaban: 
+
+1. Rest API adalah cara untuk menghubungkan berbagai aplikasi melalui internet. Cara kerjanya adalah dengan kita melakukan HTTP request ke suatu aplikasi dan aplikasi tersebut akan mengembalikan data yang diminta.
+
+2. Server side processing adalah proses pengelolaan aksi atau permintaan oleh user di dalam server(backend). Sedangkan Client side processing adalah permintaan oleh user di sisi client atau browser. Server side processing digunakan untuk melakukan pengelolaan data dengan skala besar. Sedangkan Client side processing digunakan untuk pengelolaan data kecil agar meningkatkan pengalaman user seperti preference dll.
+
+3. Monolith adalah arsitektur sebuah aplikasi dimana seluruh aplikasi dibuat dalam 1 project. Sedangkan Microservices adalah arsitektur aplikasi dimana aplikasi dipisah menjadi beberapa modul service yang bertanggung jawab untuk suatu fungsi. Modul-modul Microservice berkomunikasi dengan REST Api
+
+4. Inversion of Control adalah prinsip yang memindahkan kendali pengelolaan objek yang semula dilakukan oleh program dipindahkan ke Framework atau Container. Sedangkan Dependency Injection adalah pengimplementasian dari prinsip IoC. 
+
+5. Java Programming adalah pemrograman yang ditulis dengan bahasa Java. spring-boot adalah sebuah framework untuk membangun aplikasi back-end dengan bahasa pemrograman Java
