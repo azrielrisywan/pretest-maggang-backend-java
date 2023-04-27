@@ -21,17 +21,17 @@ public class TransaksiService {
     @Autowired
     private TransaksiDAO dao;
 
-    public List<Transaksi> findAll(){
-        return dao.findAll();
+    public List<Transaksi> findOnCart(Integer id){
+        return dao.findOnCart(id);
     }
 
-    public Optional<Transaksi> findById(Integer id){
-        return dao.findById(id);
+    public List<Transaksi> findTransaction(Integer id){
+        return dao.findTransaction(id);
     }
 
-    public Optional<TransaksiDTO.Detail> detail(Integer id) {
-        return dao.detail(id);
-    }
+    // public Optional<Transaksi> findById(Integer id){
+    //     return dao.findById(id);
+    // }
 
     public TransaksiDTO.New save(TransaksiDTO.New transaksi) {
         return dao.save(transaksi);
@@ -41,7 +41,11 @@ public class TransaksiService {
         return dao.update(transaksi);
     }
 
-    public void delete(Integer id) {
-        dao.delete(id);
+    public TransaksiDTO.Checkout checkout(TransaksiDTO.Checkout transaksi) {
+        return dao.checkout(transaksi);
     }
+
+    // public void delete(Integer id) {
+    //     dao.delete(id);
+    // }
 }
