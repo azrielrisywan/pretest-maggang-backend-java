@@ -13,4 +13,5 @@ public class Transaksi {
     private Integer status;
     private Integer kuantitas;
     private Produk produk;
+    private double totalHarga;
 }

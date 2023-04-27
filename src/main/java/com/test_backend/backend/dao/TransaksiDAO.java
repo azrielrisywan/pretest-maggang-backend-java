@@ -115,7 +115,9 @@ public class TransaksiDAO {
                 produk.setBerat(rs.getInt("produk_berat"));
                 produk.setHarga(rs.getDouble("produk_harga"));
 
+                transaksi.setTotalHarga(rs.getDouble("produk_harga") * rs.getInt("kuantitas"));
                 transaksi.setProduk(produk);
+                
                 return transaksi;
             }
         });
@@ -181,36 +183,48 @@ public class TransaksiDAO {
     //     jdbcTemplate.update(query, map);
     // }
 
-    // public Optional<Transaksi> findById(Integer id) throws EmptyResultDataAccessException {
-    //     String query = "select \n" +
-    //                        "t.id id,\n" +
-    //                        "t.id_users,\n" +
-    //                        "td.id_produk,\n" +
-    //                        "td.kuantitas,\n" +
-    //                    "from transaksi t\n" +
-    //                    "join transaksi_detail td\n" +
-    //                    "on t.id = td.transaksi_id\n" +
-    //                    "join produk p\n" +
-    //                    "on td.id_produk = p.id\n" +
-    //                    "where t.id = :id;";
-    //     MapSqlParameterSource map = new MapSqlParameterSource();
-    //     map.addValue("id", id);
-    //     return jdbcTemplate.queryForObject(query, map, new RowMapper<Optional<Transaksi>>() {
-    //         @Override
-    //         public Optional<Transaksi> mapRow(ResultSet rs, int rowNum) throws SQLException {
-    //             Transaksi transaksi = new Transaksi();
-    //             transaksi.setId(rs.getInt("transaksi_id"));
-    //             transaksi.setKuantitas(rs.getInt("kuantitas"));
+    public Optional<Transaksi> findById(Integer id) throws EmptyResultDataAccessException {
+        String query = "select \n" +
+                           "t.id,\n" +
+                           "t.id_user,\n" +
+                           "t.status,\n" +
+                           "td.id_produk,\n" +
+                           "td.kuantitas,\n" +
+                           "p.nama,\n" +
+                           "p.jenis,\n" +
+                           "p.berat,\n" +
+                           "p.harga\n" +
+                       "from transaksi t\n" +
+                       "join transaksi_detail td\n" +
+                       "on t.id = td.id_transaksi\n" +
+                       "join produk p\n" +
+                       "on td.id_produk = p.id\n" +
+                       "where t.id = :id;";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id", id);
+        return jdbcTemplate.queryForObject(query, map, new RowMapper<Optional<Transaksi>>() {
+            @Override
+            public Optional<Transaksi> mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Transaksi transaksi = new Transaksi();
+                transaksi.setId(rs.getInt("id"));
+                transaksi.setKuantitas(rs.getInt("kuantitas"));
+                transaksi.setId_user(rs.getInt("id_user"));
+                transaksi.setStatus(rs.getInt("status"));
 
-    //             Produk produk = new Produk();
-    //             produk.setId(rs.getInt("produk_id"));
-    //             produk.setNama(rs.getString("produk_nama"));
-    //             produk.setJenis(rs.getString("produk_jenis"));
-    //             produk.setBerat(rs.getInt("produk_berat"));
+                Double hargaProduk = rs.getDouble("harga");
+                Double totalHarga = hargaProduk * transaksi.getKuantitas();
 
-    //             transaksi.setProduk(produk);
-    //             return Optional.of(transaksi);
-    //         }
-    //     });
-    // }
+                Produk produk = new Produk();
+                produk.setId(rs.getInt("id_produk"));
+                produk.setNama(rs.getString("nama"));
+                produk.setJenis(rs.getString("jenis"));
+                produk.setBerat(rs.getInt("berat"));
+                produk.setHarga(hargaProduk);
+
+                transaksi.setProduk(produk);
+                transaksi.setTotalHarga(totalHarga);
+                return Optional.of(transaksi);
+            }
+        });
+    }
 }

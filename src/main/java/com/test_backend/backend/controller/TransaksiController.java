@@ -33,11 +33,11 @@ public class TransaksiController {
         return ResponseEntity.ok(response);
     }
 
-    // @GetMapping("/{id}")
-    // public ResponseEntity<?> findById(@PathVariable("id") Integer id){
-    //     Optional<Transaksi> response = service.findById(id);
-    //     return ResponseEntity.ok(response);
-    // }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
+        Optional<Transaksi> response = service.findById(id);
+        return ResponseEntity.ok(response);
+    }
 
 
     // Menambah Transaksi Baru (Tambah ke Cart)

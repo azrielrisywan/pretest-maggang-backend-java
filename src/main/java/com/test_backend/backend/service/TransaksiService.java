@@ -29,9 +29,9 @@ public class TransaksiService {
         return dao.findTransaction(id);
     }
 
-    // public Optional<Transaksi> findById(Integer id){
-    //     return dao.findById(id);
-    // }
+    public Optional<Transaksi> findById(Integer id){
+        return dao.findById(id);
+    }
 
     public TransaksiDTO.New save(TransaksiDTO.New transaksi) {
         return dao.save(transaksi);
